@@ -11,6 +11,10 @@ using Microsoft.Extensions.Hosting;
 
 namespace VerstaTask
 {
+    using Microsoft.EntityFrameworkCore;
+    using VerstaTask.EF;
+    using VerstaTask.Interfaces;
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -24,6 +28,9 @@ namespace VerstaTask
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddTransient<IOrderRepository,OrderRepository>();
+            services.AddDbContext<VerstaContext>(options =>
+                options.UseNpgsql(Configuration.GetConnectionString("PostgreSqlConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +60,7 @@ namespace VerstaTask
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+            SeedData.EnsurePopulated(app);
         }
     }
 }
