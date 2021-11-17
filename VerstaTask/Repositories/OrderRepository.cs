@@ -54,11 +54,11 @@
 
         }
 
-        public async Task AddAsync(OrderEditDto model)
+        public async Task AddAsync(OrderAddDto model)
         {
             var order = new Order
             {
-                Id = model.Id,
+                Id = _context.Orders.Any() == false ? 1 : _context.Orders.Max(x=>x.Id) + 1,
                 SenderCity = model.SenderCity,
                 SenderAddress = model.SenderAddress,
                 RecipientCity = model.RecipientCity,

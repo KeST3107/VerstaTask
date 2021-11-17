@@ -1,15 +1,13 @@
-﻿@model OrderEditDto
+﻿@model OrderAddDto
 
 @{
-    ViewBag.Title = "Редактирование заказа";
+    ViewBag.Title = "Добавление заказа";
     Layout = "_Layout";
 }
 
-<h2>Редактирование заказа</h2>
-<form asp-controller="Order" asp-action="Edit" method="post">
+<h2>Добавление заказа</h2>
+<form asp-controller="Order" asp-action="Add" method="post">
     <div asp-validation-summary="ModelOnly"></div>
-
-    <input type="hidden" asp-for="Id"/>
 
     <div class="form-group">
         <label asp-for="SenderCity"></label><br/>

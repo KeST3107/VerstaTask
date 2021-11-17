@@ -54,7 +54,7 @@
             var orderModel = new OrderEditDto()
             {
                 SenderCity = order.SenderCity,
-                SenderAddress =order.SenderAddress,
+                SenderAddress = order.SenderAddress,
                 RecipientCity = order.RecipientCity,
                 RecipientAddress = order.RecipientAddress,
                 CargoWeight = order.CargoWeight,
@@ -87,5 +87,20 @@
             return View(model);
         }
 
+        [HttpGet]
+        public ActionResult Add() => View();
+
+        [HttpPost]
+        public async Task<ActionResult> Add(OrderAddDto model)
+        {
+            if (ModelState.IsValid)
+            {
+                await _orderRepository.AddAsync(model);
+
+                return RedirectToAction("List");
+            }
+
+            return View(model);
+        }
     }
 }

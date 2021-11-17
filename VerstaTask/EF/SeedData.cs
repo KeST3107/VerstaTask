@@ -27,7 +27,7 @@
                         RecipientCity = "Котлас",
                         RecipientAddress = "Улица Ульянова д. 9",
                         CargoWeight = 3.58f,
-                        PickupDate = DateTime.Now
+                        PickupDate = new DateTime(2021,11,15)
                     },
                     new Order
                     {

@@ -14,7 +14,7 @@
 
         public Task EditAsync(OrderEditDto model);
 
-        public Task AddAsync(OrderEditDto model);
+        public Task AddAsync(OrderAddDto model);
 
         public Task DeleteAsync(long id);
 
