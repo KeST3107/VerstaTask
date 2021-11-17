@@ -4,8 +4,10 @@ namespace VerstaTask.Models
 {
     public class ErrorViewModel
     {
-        public string RequestId { get; set; }
+        public string EntityId { get; set; }
 
-        public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+        public string EntityName { get; set; }
+
+        public string ErrorMessage { get; set; }
     }
 }
