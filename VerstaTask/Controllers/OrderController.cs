@@ -38,6 +38,22 @@
             return RedirectToAction("List");
         }
 
+        public async Task<ActionResult> DeleteAll()
+        {
+            var order = _orderRepository.GetAll().Any();
+
+            if (order == false)
+                return View("Error", new ErrorViewModel
+                {
+                    EntityName = nameof(Order),
+                    EntityId = "1",
+                    ErrorMessage = $"Не найдены существующие заказы!"
+                });
+
+            await _orderRepository.DeleteAllAsync();
+            return RedirectToAction("List");
+        }
+
         [HttpGet]
         public ActionResult Edit(long id)
         {
