@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using Microsoft.EntityFrameworkCore;
     using VerstaTask.EF;
     using VerstaTask.Interfaces;
     using VerstaTask.Models;
@@ -16,28 +17,28 @@
             _context = context;
         }
 
-        public Order GetById(long id)
+        public async Task<Order> GetByIdAsync(long id)
         {
-            var order = _context.Orders.FirstOrDefault(x => x.Id == id);
-            return order;
+            var order = _context.Orders.FirstOrDefaultAsync(x => x.Id == id);
+            return order.Result;
         }
 
-        public List<Order> GetAll()
+        public async Task<List<Order>> GetAllAsync()
         {
-            var order = _context.Orders.ToList();
-            return order;
+            var order = _context.Orders.ToListAsync();
+            return order.Result;
         }
 
         public async Task DeleteByIdAsync(long id)
         {
-            var order = GetById(id);
+            var order = await GetByIdAsync(id);
             _context.Orders.Remove(order);
             await _context.SaveChangesAsync();
         }
 
         public async Task EditAsync(OrderEditDto model)
         {
-            var order = _context.Orders.FirstOrDefault(x => x.Id == model.Id);
+            var order = _context.Orders.FirstOrDefaultAsync(x => x.Id == model.Id).Result;
 
             if (order != null)
             {

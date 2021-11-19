@@ -6,9 +6,9 @@
 
     public interface IOrderRepository
     {
-        public Order GetById(long id);
+        public Task<Order> GetByIdAsync(long id);
 
-        public List<Order> GetAll();
+        public Task<List<Order>> GetAllAsync();
 
         public Task DeleteByIdAsync(long id);
 

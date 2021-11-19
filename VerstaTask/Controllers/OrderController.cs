@@ -18,13 +18,13 @@
 
         public ActionResult List(int page = 1)
         {
-            var orders = _orderRepository.GetAll().OrderBy(x => x.Id);
+            var orders = _orderRepository.GetAllAsync().Result.OrderBy(x => x.Id);
             return View(orders);
         }
 
         public async Task<ActionResult> Delete(long id)
         {
-            var order = _orderRepository.GetById(id);
+            var order = _orderRepository.GetByIdAsync(id).Result;
 
             if (order == null)
                 return View("Error", new ErrorViewModel
@@ -40,7 +40,7 @@
 
         public async Task<ActionResult> DeleteAll()
         {
-            var order = _orderRepository.GetAll().Any();
+            var order = _orderRepository.GetAllAsync().Result.Any();
 
             if (order == false)
                 return View("Error", new ErrorViewModel
@@ -57,7 +57,7 @@
         [HttpGet]
         public ActionResult Edit(long id)
         {
-            var order = _orderRepository.GetById(id);
+            var order = _orderRepository.GetByIdAsync(id).Result;
 
             if (order == null)
                 return View("Error", new ErrorViewModel
@@ -85,7 +85,7 @@
         {
             if (ModelState.IsValid)
             {
-                var order = _orderRepository.GetById(model.Id);
+                var order = _orderRepository.GetByIdAsync(model.Id).Result;
 
                 if (order == null)
                     return View("Error", new ErrorViewModel
