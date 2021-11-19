@@ -8,32 +8,51 @@
 <h2>Список заказов</h2>
 <div>
     <table class="table table-striped">
+        <thead>
         <tr>
-        <td>
-            Номер заказа
-        </td>
-        <td>
-            Город отправителя
-        </td>
-        <td>
-            Адрес отправителя
-        </td>
-        <td>
-            Город получателя
-        </td>
-        <td>
-            Адрес получателя
-        </td>
-        <td>
-            Вес груза
-        </td>
-        <td>
-            Дата забора груза
-        </td>
-        <td>
-            Действия с заказом
-        </td>
+            <td>
+                <div style="width: 7rem">
+                    Номер заказа
+                </div>
+            </td>
+            <td>
+                <div style="width: 9rem">
+                    Город отправителя
+                </div>
+            </td>
+            <td>
+                <div style="width: 9rem">
+                    Адрес отправителя
+                </div>
+            </td>
+            <td>
+                <div style="width: 9rem">
+                    Город получателя
+                </div>
+            </td>
+            <td>
+                <div style="width: 9rem">
+                    Адрес получателя
+                </div>
+            </td>
+            <td>
+                <div style="width: 5rem">
+                    Вес груза
+                </div>
+            </td>
+            <td>
+                <div style="width: 10rem">
+                    Дата забора груза
+                </div>
+            </td>
+            <td>
+                <div style="width: 14rem">
+                    Действия с заказом
+                </div>
+            </td>
         </tr>
+        </thead>
+        <tbody>
         @foreach (var item in Model)
         {
             <tr>
@@ -59,17 +78,18 @@
                     @item.PickupDate.ToString("MM/dd/yyyy HH:mm tt")
                 </td>
                 <td>
-                      <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a>
-                                            <a asp-controller="Order"
-                                               asp-action="Delete"
-                                               asp-route-id="@item.Id">
-                                                <button class="btn btn-outline-danger">
-                                                    Удалить
-                                                </button>
-                                            </a>
+                    <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a>
+                    <a asp-controller="Order"
+                       asp-action="Delete"
+                       asp-route-id="@item.Id">
+                        <button class="btn btn-outline-danger">
+                            Удалить
+                        </button>
+                    </a>
                 </td>
             </tr>
         }
+        </tbody>
     </table>
     <a class="btn btn-outline-success" asp-action="Add">Добавить заказ</a>
 </div>
