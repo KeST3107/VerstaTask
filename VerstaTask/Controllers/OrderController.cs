@@ -3,36 +3,35 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.EntityFrameworkCore;
+    using VerstaTask.Entities;
     using VerstaTask.Interfaces;
     using VerstaTask.Models;
+    using VerstaTask.Services;
 
     public class OrderController : Controller
     {
         private readonly IOrderRepository _orderRepository;
+        private readonly IErrorService _errorService;
 
         public OrderController(IOrderRepository orderRepository)
         {
             _orderRepository = orderRepository;
+            _errorService = new ErrorService();
         }
 
-        public ActionResult List(int page = 1)
+        public async Task<ActionResult> List(int page = 1)
         {
-            var orders = _orderRepository.GetAllAsync().Result.OrderBy(x => x.Id);
+            var orders = await _orderRepository.GetAllAsync();
+            orders = orders.OrderBy(x => x.Id).ToList();
             return View(orders);
         }
 
         public async Task<ActionResult> Delete(long id)
         {
-            var order = _orderRepository.GetByIdAsync(id).Result;
+            var order = await _orderRepository.GetByIdAsync(id);
 
             if (order == null)
-                return View("Error", new ErrorViewModel
-                {
-                    EntityName = nameof(Order),
-                    EntityId = id.ToString(),
-                    ErrorMessage = $"Не найдена сущность {nameof(Order)} с id = {id}."
-                });
+                return View("Error", _errorService.GenerateError<Order>(id));
 
             await _orderRepository.DeleteAsync(id);
             return RedirectToAction("List");
@@ -43,12 +42,7 @@
             var order = _orderRepository.GetAllAsync().Result.Any();
 
             if (order == false)
-                return View("Error", new ErrorViewModel
-                {
-                    EntityName = nameof(Order),
-                    EntityId = "1",
-                    ErrorMessage = $"Не найдены существующие заказы!"
-                });
+                return View("Error", _errorService.GenerateError<Order>(1));
 
             await _orderRepository.DeleteAllAsync();
             return RedirectToAction("List");
@@ -60,12 +54,7 @@
             var order = _orderRepository.GetByIdAsync(id).Result;
 
             if (order == null)
-                return View("Error", new ErrorViewModel
-                {
-                    EntityName = nameof(Order),
-                    EntityId = id.ToString(),
-                    ErrorMessage = $"Не найдена сущность {nameof(Order)} с id = {id}."
-                });
+                return View("Error", _errorService.GenerateError<Order>(id));
 
             var orderModel = new OrderEditDto()
             {
@@ -88,12 +77,7 @@
                 var order = _orderRepository.GetByIdAsync(model.Id).Result;
 
                 if (order == null)
-                    return View("Error", new ErrorViewModel
-                    {
-                        EntityName = nameof(Order),
-                        EntityId = model.Id.ToString(),
-                        ErrorMessage = $"Не найдена сущность {nameof(Order)} с id = {model.Id}."
-                    });
+                    return View("Error", _errorService.GenerateError<Order>(model.Id));
 
                 await _orderRepository.EditAsync(model);
 

@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using VerstaTask.Entities;
     using VerstaTask.Models;
 
     public interface IOrderRepository

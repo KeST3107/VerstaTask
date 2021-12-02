@@ -5,6 +5,7 @@
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using VerstaTask.EF;
+    using VerstaTask.Entities;
     using VerstaTask.Interfaces;
     using VerstaTask.Models;
 
@@ -19,14 +20,14 @@
 
         public async Task<Order> GetByIdAsync(long id)
         {
-            var order = _context.Orders.FirstOrDefaultAsync(x => x.Id == id);
-            return order.Result;
+            var order = await _context.Orders.FirstOrDefaultAsync(x => x.Id == id);
+            return order;
         }
 
         public async Task<List<Order>> GetAllAsync()
         {
-            var order = _context.Orders.ToListAsync();
-            return order.Result;
+            var orders = await _context.Orders.ToListAsync();
+            return orders;
         }
 
         public async Task DeleteByIdAsync(long id)
@@ -38,7 +39,7 @@
 
         public async Task EditAsync(OrderEditDto model)
         {
-            var order = _context.Orders.FirstOrDefaultAsync(x => x.Id == model.Id).Result;
+            var order = await _context.Orders.FirstOrDefaultAsync(x => x.Id == model.Id);
 
             if (order != null)
             {
@@ -74,7 +75,7 @@
 
         public async Task DeleteAsync(long id)
         {
-            var order = _context.Orders.FirstOrDefault(x => x.Id == id);
+            var order = await _context.Orders.FirstOrDefaultAsync(x => x.Id == id);
             if (order != null)
             {
                 _context.Orders.Remove(order);

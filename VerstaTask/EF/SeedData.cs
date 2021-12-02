@@ -6,6 +6,7 @@
     using Microsoft.AspNetCore.Builder;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
+    using VerstaTask.Entities;
     using VerstaTask.Models;
 
     public class SeedData

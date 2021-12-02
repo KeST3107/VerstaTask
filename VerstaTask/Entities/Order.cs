@@ -1,4 +1,4 @@
-﻿namespace VerstaTask.Models
+﻿namespace VerstaTask.Entities
 {
     using System;
     using System.ComponentModel.DataAnnotations;

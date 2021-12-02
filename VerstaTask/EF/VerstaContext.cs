@@ -1,6 +1,7 @@
 ﻿namespace VerstaTask.EF
 {
     using Microsoft.EntityFrameworkCore;
+    using VerstaTask.Entities;
     using VerstaTask.Models;
 
     public class VerstaContext : DbContext
