@@ -58,6 +58,7 @@
 
             var orderModel = new OrderEditDto()
             {
+                Id = id,
                 SenderCity = order.SenderCity,
                 SenderAddress = order.SenderAddress,
                 RecipientCity = order.RecipientCity,

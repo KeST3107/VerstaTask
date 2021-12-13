@@ -7,7 +7,6 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
     using VerstaTask.Entities;
-    using VerstaTask.Models;
 
     public class SeedData
     {
@@ -28,7 +27,7 @@
                         RecipientCity = "Котлас",
                         RecipientAddress = "Улица Ульянова д. 9",
                         CargoWeight = 3.58f,
-                        PickupDate = new DateTime(2021,11,15,14,33,00)
+                        PickupDate = new DateTime(2021, 11, 15, 14, 33, 00)
                     },
                     new Order
                     {
@@ -38,7 +37,7 @@
                         RecipientCity = "Казань",
                         RecipientAddress = "Улица Ульянова д. 9",
                         CargoWeight = 10.6f,
-                        PickupDate = new DateTime(2021, 10, 5,18,55,00)
+                        PickupDate = new DateTime(2021, 10, 5, 18, 55, 00)
                     },
                     new Order
                     {
@@ -48,7 +47,7 @@
                         RecipientCity = "Ногинск",
                         RecipientAddress = "бульвар Домодедовская, 29",
                         CargoWeight = 35.58f,
-                        PickupDate = new DateTime(2020,11,15,09,15,00)
+                        PickupDate = new DateTime(2020, 11, 15, 09, 15, 00)
                     },
                     new Order
                     {
@@ -58,7 +57,7 @@
                         RecipientCity = "Ногинск",
                         RecipientAddress = "шоссе Гагарина, 84",
                         CargoWeight = 18f,
-                        PickupDate = new DateTime(2005, 10, 5,08,15,00)
+                        PickupDate = new DateTime(2005, 10, 5, 08, 15, 00)
                     },
                     new Order
                     {
@@ -68,7 +67,7 @@
                         RecipientCity = "Коломна",
                         RecipientAddress = "въезд Ломоносова, 87",
                         CargoWeight = 39f,
-                        PickupDate = new DateTime(2021,05,15,14,33,00)
+                        PickupDate = new DateTime(2021, 05, 15, 14, 33, 00)
                     },
                     new Order
                     {
@@ -78,7 +77,7 @@
                         RecipientCity = "Серебряные Пруды",
                         RecipientAddress = "спуск Чехова, 55",
                         CargoWeight = 199f,
-                        PickupDate = new DateTime(2015, 10, 25,15,00,00)
+                        PickupDate = new DateTime(2015, 10, 25, 15, 00, 00)
                     },
                     new Order
                     {
@@ -88,7 +87,7 @@
                         RecipientCity = "Одинцово",
                         RecipientAddress = "бульвар Ленина, 37",
                         CargoWeight = 32f,
-                        PickupDate = new DateTime(2021,5,15,17,8,00)
+                        PickupDate = new DateTime(2021, 5, 15, 17, 8, 00)
                     },
                     new Order
                     {
@@ -98,7 +97,7 @@
                         RecipientCity = "Лотошино",
                         RecipientAddress = "пл. 1905 года, 64",
                         CargoWeight = 10.68f,
-                        PickupDate = new DateTime(2010, 10, 5,13,44,00)
+                        PickupDate = new DateTime(2010, 10, 5, 13, 44, 00)
                     },
                     new Order
                     {
@@ -108,7 +107,7 @@
                         RecipientCity = "Воскресенск",
                         RecipientAddress = "пр. Сталина, 05",
                         CargoWeight = 39f,
-                        PickupDate = new DateTime(2021,9,15,12,50,00)
+                        PickupDate = new DateTime(2021, 9, 15, 12, 50, 00)
                     },
                     new Order
                     {
@@ -118,7 +117,7 @@
                         RecipientCity = "Озёры",
                         RecipientAddress = "пр. Ленина, 24",
                         CargoWeight = 0.55f,
-                        PickupDate = new DateTime(2020, 6, 15,12,15,00)
+                        PickupDate = new DateTime(2020, 6, 15, 12, 15, 00)
                     },
                 };
 

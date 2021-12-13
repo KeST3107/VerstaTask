@@ -8,22 +8,22 @@
     {
         [Required(ErrorMessage = "Поле обязательно")]
         [DisplayName("Город отправителя")]
-        [DataType(DataType.Text,ErrorMessage = "Неправильные данные!")]
+        [DataType(DataType.Text, ErrorMessage = "Неправильные данные!")]
         public string SenderCity { get; set; }
 
         [Required(ErrorMessage = "Поле обязательно")]
         [DisplayName("Адрес отправителя")]
-        [DataType(DataType.Text,ErrorMessage = "Неправильные данные!")]
+        [DataType(DataType.Text, ErrorMessage = "Неправильные данные!")]
         public string SenderAddress { get; set; }
 
         [Required(ErrorMessage = "Поле обязательно")]
         [DisplayName("Город получателя")]
-        [DataType(DataType.Text,ErrorMessage = "Неправильные данные!")]
+        [DataType(DataType.Text, ErrorMessage = "Неправильные данные!")]
         public string RecipientCity { get; set; }
 
         [Required(ErrorMessage = "Поле обязательно")]
         [DisplayName("Адрес получателя")]
-        [DataType(DataType.Text,ErrorMessage = "Неправильные данные!")]
+        [DataType(DataType.Text, ErrorMessage = "Неправильные данные!")]
         public string RecipientAddress { get; set; }
 
         [Required(ErrorMessage = "Поле обязательно")]
@@ -32,7 +32,7 @@
 
         [Required(ErrorMessage = "Поле обязательно")]
         [DisplayName("Дата забора груза")]
-        [DataType(DataType.DateTime,ErrorMessage = "Неправильные данные!")]
+        [DataType(DataType.DateTime, ErrorMessage = "Неправильные данные!")]
         public DateTime PickupDate { get; set; }
     }
 }

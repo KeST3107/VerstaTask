@@ -2,7 +2,6 @@
 {
     using Microsoft.EntityFrameworkCore;
     using VerstaTask.Entities;
-    using VerstaTask.Models;
 
     public class VerstaContext : DbContext
     {
@@ -10,7 +9,6 @@
 
         public VerstaContext(DbContextOptions<VerstaContext> options) : base(options)
         {
-
         }
     }
 }

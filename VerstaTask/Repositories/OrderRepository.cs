@@ -1,4 +1,4 @@
-﻿namespace VerstaTask
+﻿namespace VerstaTask.Repositories
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -53,14 +53,13 @@
                 _context.Orders.Update(order);
                 await _context.SaveChangesAsync();
             }
-
         }
 
         public async Task AddAsync(OrderAddDto model)
         {
             var order = new Order
             {
-                Id = _context.Orders.Any() == false ? 1 : _context.Orders.Max(x=>x.Id) + 1,
+                Id = _context.Orders.Any() == false ? 1 : _context.Orders.Max(x => x.Id) + 1,
                 SenderCity = model.SenderCity,
                 SenderAddress = model.SenderAddress,
                 RecipientCity = model.RecipientCity,
