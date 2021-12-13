@@ -1,7 +1,7 @@
 ﻿namespace VerstaTask.EF
 {
     using Microsoft.EntityFrameworkCore;
-    using VerstaTask.Models;
+    using VerstaTask.Entities;
 
     public class VerstaContext : DbContext
     {
@@ -9,7 +9,6 @@
 
         public VerstaContext(DbContextOptions<VerstaContext> options) : base(options)
         {
-
         }
     }
 }

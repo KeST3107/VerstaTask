@@ -1,9 +1,11 @@
-﻿namespace VerstaTask
+﻿namespace VerstaTask.Repositories
 {
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using Microsoft.EntityFrameworkCore;
     using VerstaTask.EF;
+    using VerstaTask.Entities;
     using VerstaTask.Interfaces;
     using VerstaTask.Models;
 
@@ -16,28 +18,28 @@
             _context = context;
         }
 
-        public Order GetById(long id)
+        public async Task<Order> GetByIdAsync(long id)
         {
-            var order = _context.Orders.FirstOrDefault(x => x.Id == id);
+            var order = await _context.Orders.FirstOrDefaultAsync(x => x.Id == id);
             return order;
         }
 
-        public List<Order> GetAll()
+        public async Task<List<Order>> GetAllAsync()
         {
-            var order = _context.Orders.ToList();
-            return order;
+            var orders = await _context.Orders.ToListAsync();
+            return orders;
         }
 
         public async Task DeleteByIdAsync(long id)
         {
-            var order = GetById(id);
+            var order = await GetByIdAsync(id);
             _context.Orders.Remove(order);
             await _context.SaveChangesAsync();
         }
 
         public async Task EditAsync(OrderEditDto model)
         {
-            var order = _context.Orders.FirstOrDefault(x => x.Id == model.Id);
+            var order = await _context.Orders.FirstOrDefaultAsync(x => x.Id == model.Id);
 
             if (order != null)
             {
@@ -51,14 +53,13 @@
                 _context.Orders.Update(order);
                 await _context.SaveChangesAsync();
             }
-
         }
 
-        public async Task AddAsync(OrderEditDto model)
+        public async Task AddAsync(OrderAddDto model)
         {
             var order = new Order
             {
-                Id = model.Id,
+                Id = _context.Orders.Any() == false ? 1 : _context.Orders.Max(x => x.Id) + 1,
                 SenderCity = model.SenderCity,
                 SenderAddress = model.SenderAddress,
                 RecipientCity = model.RecipientCity,
@@ -73,7 +74,7 @@
 
         public async Task DeleteAsync(long id)
         {
-            var order = _context.Orders.FirstOrDefault(x => x.Id == id);
+            var order = await _context.Orders.FirstOrDefaultAsync(x => x.Id == id);
             if (order != null)
             {
                 _context.Orders.Remove(order);

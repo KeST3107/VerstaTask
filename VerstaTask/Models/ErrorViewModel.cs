@@ -1,5 +1,3 @@
-using System;
-
 namespace VerstaTask.Models
 {
     public class ErrorViewModel

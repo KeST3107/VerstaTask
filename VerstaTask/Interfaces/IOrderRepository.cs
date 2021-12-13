@@ -2,19 +2,20 @@
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using VerstaTask.Entities;
     using VerstaTask.Models;
 
     public interface IOrderRepository
     {
-        public Order GetById(long id);
+        public Task<Order> GetByIdAsync(long id);
 
-        public List<Order> GetAll();
+        public Task<List<Order>> GetAllAsync();
 
         public Task DeleteByIdAsync(long id);
 
         public Task EditAsync(OrderEditDto model);
 
-        public Task AddAsync(OrderEditDto model);
+        public Task AddAsync(OrderAddDto model);
 
         public Task DeleteAsync(long id);
 
