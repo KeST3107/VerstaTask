@@ -1,5 +1,6 @@
 ﻿namespace VerstaTask.Repositories
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -43,12 +44,13 @@
 
             if (order != null)
             {
+                var dateUtc = new DateTimeOffset(model.PickupDate, TimeSpan.Zero);
                 order.SenderCity = model.SenderCity;
                 order.SenderAddress = model.SenderAddress;
                 order.RecipientCity = model.RecipientCity;
                 order.RecipientAddress = model.RecipientAddress;
                 order.CargoWeight = model.CargoWeight;
-                order.PickupDate = model.PickupDate;
+                order.PickupDate = dateUtc.UtcDateTime;
 
                 _context.Orders.Update(order);
                 await _context.SaveChangesAsync();
@@ -57,6 +59,7 @@
 
         public async Task AddAsync(OrderAddDto model)
         {
+            var dateUtc = new DateTimeOffset(model.PickupDate, TimeSpan.Zero);
             var order = new Order
             {
                 Id = _context.Orders.Any() == false ? 1 : _context.Orders.Max(x => x.Id) + 1,
@@ -65,7 +68,7 @@
                 RecipientCity = model.RecipientCity,
                 RecipientAddress = model.RecipientAddress,
                 CargoWeight = model.CargoWeight,
-                PickupDate = model.PickupDate
+                PickupDate = dateUtc.UtcDateTime
             };
 
             _context.Orders.Add(order);

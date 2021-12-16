@@ -1,5 +1,6 @@
 ﻿namespace VerstaTask.EF
 {
+    using System;
     using Microsoft.EntityFrameworkCore;
     using VerstaTask.Entities;
 

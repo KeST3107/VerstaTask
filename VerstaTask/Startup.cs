@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace VerstaTask
 {
+    using System;
     using Microsoft.EntityFrameworkCore;
     using VerstaTask.EF;
     using VerstaTask.Interfaces;
@@ -23,6 +24,7 @@ namespace VerstaTask
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
             services.AddControllersWithViews();
             services.AddDbContext<VerstaContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("PostgreSqlConnection")));
