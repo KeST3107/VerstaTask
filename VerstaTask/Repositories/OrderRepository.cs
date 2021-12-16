@@ -9,14 +9,17 @@
     using VerstaTask.Entities;
     using VerstaTask.Interfaces;
     using VerstaTask.Models;
+    using VerstaTask.Services;
 
     public class OrderRepository : IOrderRepository
     {
         private readonly VerstaContext _context;
+        private readonly ITimeHelper _timeHelper;
 
         public OrderRepository(VerstaContext context)
         {
             _context = context;
+            _timeHelper = new TimeHelper();
         }
 
         public async Task<Order> GetByIdAsync(long id)
@@ -44,13 +47,12 @@
 
             if (order != null)
             {
-                var dateUtc = new DateTimeOffset(model.PickupDate, TimeSpan.Zero);
                 order.SenderCity = model.SenderCity;
                 order.SenderAddress = model.SenderAddress;
                 order.RecipientCity = model.RecipientCity;
                 order.RecipientAddress = model.RecipientAddress;
                 order.CargoWeight = model.CargoWeight;
-                order.PickupDate = dateUtc.UtcDateTime;
+                order.PickupDate = _timeHelper.GetUtcDateTime(model.PickupDate);
 
                 _context.Orders.Update(order);
                 await _context.SaveChangesAsync();
@@ -59,7 +61,6 @@
 
         public async Task AddAsync(OrderAddDto model)
         {
-            var dateUtc = new DateTimeOffset(model.PickupDate, TimeSpan.Zero);
             var order = new Order
             {
                 Id = _context.Orders.Any() == false ? 1 : _context.Orders.Max(x => x.Id) + 1,
@@ -68,7 +69,7 @@
                 RecipientCity = model.RecipientCity,
                 RecipientAddress = model.RecipientAddress,
                 CargoWeight = model.CargoWeight,
-                PickupDate = dateUtc.UtcDateTime
+                PickupDate = _timeHelper.GetUtcDateTime(model.PickupDate)
             };
 
             _context.Orders.Add(order);
