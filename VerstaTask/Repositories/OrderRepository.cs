@@ -1,6 +1,5 @@
 ﻿namespace VerstaTask.Repositories
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -69,7 +68,7 @@
                 RecipientCity = model.RecipientCity,
                 RecipientAddress = model.RecipientAddress,
                 CargoWeight = model.CargoWeight,
-                PickupDate = _timeHelper.GetUtcDateTime(model.PickupDate)
+                PickupDate = _timeHelper.GetUtcDateTime(model.PickupDate),
             };
 
             _context.Orders.Add(order);

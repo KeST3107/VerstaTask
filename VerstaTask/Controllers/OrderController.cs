@@ -1,6 +1,5 @@
 ﻿namespace VerstaTask.Controllers
 {
-    using System;
     using System.Linq;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
@@ -58,7 +57,7 @@
                 return View("Error", _errorService.GenerateError<Order>(id));
             var orderModel = new OrderEditDto()
             {
-                Id = id,
+                Id = order.Id,
                 SenderCity = order.SenderCity,
                 SenderAddress = order.SenderAddress,
                 RecipientCity = order.RecipientCity,

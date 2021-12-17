@@ -14,4 +14,6 @@ namespace VerstaTask
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
     }
+    //Todo
+    /*На стороне клиенте обновлять время исходя из его часового пояса*/
 }

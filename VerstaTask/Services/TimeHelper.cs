@@ -7,9 +7,8 @@
     {
         public DateTime GetUtcDateTime(DateTime sourceDate)
         {
-            var dateUtc = new DateTime(sourceDate.Year, sourceDate.Month, sourceDate.Day, sourceDate.Hour,
-                sourceDate.Minute, sourceDate.Second, DateTimeKind.Utc);
-            return dateUtc;
+            var dateUtc = new DateTimeOffset(sourceDate, TimeSpan.Zero);
+            return dateUtc.UtcDateTime;
         }
     }
 }
